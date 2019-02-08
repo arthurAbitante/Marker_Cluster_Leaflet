@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet debug page</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="screen.css" />
+
+	
+	<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.0/MarkerCluster.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.0/MarkerCluster.Default.css" />
+	<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.0/leaflet.markercluster.js'></script>
+	
+	
+</head>
+<body>
+
+	<div id="mapid"></div>
+	<span>Click a cluster to zoom to its bounds</span>
+
+	<script type="text/javascript">
+ /*			var mymap = L.map('mapid').setView([-27.712, -50.006], 5);
+		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZnh4ZGV2IiwiYSI6ImNqcmttcXFwaDA2eGg0YXAzaWw0bmg1MDkifQ.YoVfRvnNUxGAERgmRq0quQ', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoiZnh4ZGV2IiwiYSI6ImNqcmttcXFwaDA2eGg0YXAzaWw0bmg1MDkifQ.YoVfRvnNUxGAERgmRq0quQ'
+        }).addTo(mymap);
+        
+        */
+      
+		var tiles = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZnh4ZGV2IiwiYSI6ImNqcmttcXFwaDA2eGg0YXAzaWw0bmg1MDkifQ.YoVfRvnNUxGAERgmRq0quQ', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoiZnh4ZGV2IiwiYSI6ImNqcmttcXFwaDA2eGg0YXAzaWw0bmg1MDkifQ.YoVfRvnNUxGAERgmRq0quQ'
+        }),
+			latlng = L.latLng(-27.712, -50.006);
+
+		var map = L.map('mapid', {center: latlng, zoom: 5, layers: [tiles]});
+
+		var markers = L.markerClusterGroup({ singleMarkerMode: true});
+
+		var m = L.marker([-27.712, -49.990]);
+		markers.addLayer(m);
+		var m = L.marker([-27.712, -49.970]);
+		markers.addLayer(m);
+		var m = L.marker([-27.712, -49.960]);
+		markers.addLayer(m);
+		var m = L.marker([-27.712, -49.950]);
+		markers.addLayer(m);
+		var m = L.marker([-27.712, -49.940]);
+		markers.addLayer(m);
+		var m = L.marker([-27.712, -49.930]);
+		markers.addLayer(m);
+
+		markers.on('clusterclick', function (a) {
+			a.layer.zoomToBounds();
+			
+		});
+
+		
+		map.addLayer(markers);
+
+	</script>
+</body>
+</html>
